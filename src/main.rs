@@ -9,8 +9,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
     let file_path = &args[1];
 
-    // Build the pipeline
-    let pipeline = gstreamer::parse_launch(&format!("playbin uri=file://{file_path}")).unwrap();
+
+    // Create a new pipeline
+    let pipeline = gstreamer::parse_launch(&format!("filesrc location={} ! mpegaudioparse ! mpg123audiodec ! alsasink", file_path)).unwrap();
     // let pipeline = gstreamer::parse_launch(&format!(
     //     "playbin uri=file://{file_path} ! mpegaudioparse ! mpg123audiodec ! alsasink",
     //     file_path = file_path
