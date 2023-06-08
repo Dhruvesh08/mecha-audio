@@ -7,11 +7,11 @@ inherit cargo
 
 # how to get mecha-audio could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/mecha-audio/0.1.0"
-SRC_URI += ""
-SRCREV = ""
+SRC_URI += "git://github.com/Dhruvesh08/mecha-audio.git;protocol=https;nobranch=1;branch=main"
+SRCREV = "9e7e22b0fcc9ce682ebbc6be04e3c2cfd94d1471"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
-
+PV:append = ".AUTOINC+9e7e22b0fc"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -77,7 +77,6 @@ SRC_URI += " \
     crate://crates.io/winnow/0.4.6 \
 "
 
-DEPENDS:append = " pkgconfig-native gstreamer1.0"
 
 
 # FIXME: update generateme with the real MD5 of the license file

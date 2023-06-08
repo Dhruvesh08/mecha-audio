@@ -1,19 +1,17 @@
 use gstreamer::prelude::*;
-
-use std::error::Error;
-
-//improve this code as gstreamer use gstreamer::prelude::*;
+use std::{env, error::Error};
 
 fn main() -> Result<(), Box<dyn Error>> {
+    // Build the gsreamer 
     gstreamer::init().unwrap();
 
-    // Build the pipeline
-    gstreamer::init().unwrap();
+    // Get the file path from user input
+    let args: Vec<String> = env::args().collect();
+    let file_path = &args[1];
 
     // Build the pipeline
-    let file_path = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
     let pipeline = gstreamer::parse_launch(&format!(
-        "playbin uri={file_path} audio-sink=autoaudiosink",
+        "playbin uri=file://{file_path} audio-sink=autoaudiosink",
         file_path = file_path
     ))
     .unwrap();
@@ -47,7 +45,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     pipeline
         .set_state(gstreamer::State::Null)
         .expect("Unable to set the pipeline to the `Null` state");
-
 
     Ok(())
 }
