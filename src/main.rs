@@ -10,11 +10,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     let file_path = &args[1];
 
     // Build the pipeline
-    let pipeline = gstreamer::parse_launch(&format!(
-        "playbin uri=file://{file_path} ! mpegaudioparse ! mpg123audiodec !  alsasink",
-        file_path = file_path
-    ))
-    .unwrap();
+    let pipeline = gstreamer::parse_launch(&format!("playbin uri=file://{file_path}")).unwrap();
+    // let pipeline = gstreamer::parse_launch(&format!(
+    //     "playbin uri=file://{file_path} ! mpegaudioparse ! mpg123audiodec ! alsasink",
+    //     file_path = file_path
+    // ))
+    // .unwrap();
 
     // Start playing
     pipeline
