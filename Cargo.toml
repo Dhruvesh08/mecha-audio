@@ -1,0 +1,11 @@
+[package]
+name = "mecha-audio"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/Dhruvesh08/mecha-audio"
+homepage = "https://github.com/Dhruvesh08/mecha-audio"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gstreamer = "0.20.6"
